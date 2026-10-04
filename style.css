@@ -75,6 +75,20 @@ h1 {
 }
 .sub { font-size: 20px; line-height: 1.5; color: var(--muted); max-width: 560px; margin: 0 auto 36px; letter-spacing: -0.01em; }
 .actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.install {
+  display: inline-flex; align-items: center; gap: 4px; margin-top: 28px; max-width: 100%;
+  padding: 4px 4px 4px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel);
+}
+.install[hidden] { display: none; }
+.install code { font: 13px var(--mono); white-space: nowrap; overflow-x: auto; }
+.install code::before { content: "$ "; color: var(--muted); }
+.copy {
+  flex: none; padding: 6px 10px; border: none; border-radius: 6px; background: transparent;
+  font: 500 12px var(--sans); color: var(--muted); cursor: pointer;
+}
+.copy:hover { color: var(--text); background: var(--bg); }
+.terminal { margin: 16px 0 0 !important; font-size: 13px !important; }
+.terminal code { font: 12px var(--mono); color: var(--text); overflow-wrap: anywhere; }
 .platforms-note { font-size: 13px; color: var(--muted); margin: 16px 0 0; }
 
 /* label + content rows */
