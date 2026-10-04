@@ -49,6 +49,10 @@
         <a class="btn dark" id="hero-download" href="#apps">Download notslack</a>
         <a class="btn" href="https://github.com/nothq">View on GitHub</a>
       </div>
+      <div class="install" id="install">
+        <code>curl -fsSL https://nothq.github.io/install.sh | sh</code>
+        <button type="button" class="copy" data-copy="curl -fsSL https://nothq.github.io/install.sh | sh">Copy</button>
+      </div>
       <p class="platforms-note">For macOS, Linux and Windows. Open source.</p>
 
     </section>
@@ -88,6 +92,7 @@
             <li><a data-os="linux" href="https://github.com/nothq/notslack/releases/latest/download/notslack-linux-x86_64.tar.gz">Linux <span>x86_64</span></a></li>
             <li><a data-os="windows" href="https://github.com/nothq/notslack/releases/latest/download/notslack-windows-x86_64.zip">Windows <span>x86_64</span></a></li>
           </ul>
+          <p class="terminal">Or on macOS and Linux: <code>curl -fsSL https://nothq.github.io/install.sh | sh</code></p>
         </article>
         <article class="cell">
           <p class="kicker muted">In progress</p>
@@ -138,7 +143,17 @@ cd notslack && cargo run --release</code></pre>
       var hero = document.getElementById("hero-download");
       hero.href = link.href;
       hero.textContent = "Download for " + link.firstChild.textContent.trim();
+      if (os === "windows") document.getElementById("install").hidden = true;
     })();
+
+    document.querySelectorAll("[data-copy]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        navigator.clipboard.writeText(button.dataset.copy).then(function () {
+          button.textContent = "Copied";
+          setTimeout(function () { button.textContent = "Copy"; }, 1600);
+        });
+      });
+    });
   </script>
 </body>
 </html>

@@ -1,0 +1,53 @@
+name: Install script
+
+# Runs install.sh against the latest notslack release on every platform it
+# supports, then checks the app is there and starts.
+on:
+  pull_request:
+    paths: [install.sh, .github/workflows/install.yml]
+  push:
+    branches: [main]
+    paths: [install.sh]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, macos-15-intel, ubuntu-22.04]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install notslack the way visitors do
+        run: cat install.sh | NOTHQ_NO_OPEN=1 sh
+
+      - name: Check the macOS app
+        if: runner.os == 'macOS'
+        run: |
+          app=/Applications/notslack.app
+          codesign --verify --strict --verbose=2 "$app"
+          if xattr -p com.apple.quarantine "$app" 2>/dev/null; then
+            echo "notslack.app is quarantined, so Gatekeeper would block it" >&2
+            exit 1
+          fi
+          open "$app"
+          for _ in $(seq 30); do pgrep -x notslack && exit 0; sleep 1; done
+          echo "notslack did not start" >&2
+          exit 1
+
+      - name: Check the Linux app
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libxkbcommon-x11-0 libvulkan1 mesa-vulkan-drivers
+          test -x ~/.local/bin/notslack
+          test -f ~/.local/share/applications/notslack.desktop
+          xvfb-run -a timeout 15 ~/.local/bin/notslack || status=$?
+          # timeout's 124 means notslack was still running when it was stopped.
+          [ "${status:-0}" = 124 ]
