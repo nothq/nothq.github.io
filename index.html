@@ -3,178 +3,132 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>nothq · your apps, without the browser</title>
-  <meta name="description" content="Native Rust rewrites of the Electron apps you live in. Pixel perfect, GPU rendered, a fraction of the memory. Open source under AGPL-3.0.">
-  <meta property="og:title" content="nothq · your apps, without the browser">
-  <meta property="og:description" content="Native Rust rewrites of Slack, Notion and Superhuman on GPUI. Same pixels, no Electron.">
+  <title>nothq</title>
+  <meta name="description" content="Your computer is fast. Your apps should be too. nothq rewrites the apps you work in all day as native, open-source software.">
+  <meta property="og:title" content="nothq">
+  <meta property="og:description" content="Your computer is fast. Your apps should be too.">
   <meta property="og:url" content="https://nothq.github.io/">
-  <meta name="theme-color" content="#0b0b0f">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="nav wrap">
-    <a class="logo" href="#top" aria-label="nothq home"><span class="strike">not</span>hq</a>
-    <nav>
-      <a href="#apps">Apps</a>
-      <a href="#why">Why</a>
-      <a href="#build">Contribute</a>
-      <a href="https://github.com/nothq">GitHub</a>
-    </nav>
+  <header class="nav">
+    <div class="frame nav-inner">
+      <a class="wordmark" href="./">nothq</a>
+      <nav>
+        <a href="#mission">Mission</a>
+        <a href="#apps">Apps</a>
+        <a href="https://github.com/nothq">GitHub</a>
+        <a class="btn small dark" href="#apps">Download</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="top">
-    <section class="hero wrap">
-      <p class="eyebrow">Open source · Rust · GPUI</p>
-      <h1>Your apps,<br><span class="accent">without the browser.</span></h1>
-      <p class="lede">
-        Slack, Notion and Superhuman are web pages wearing a desktop costume.
-        We rebuild them as native Rust apps on <a href="https://www.gpui.rs">GPUI</a>,
-        the GPU-accelerated framework behind the Zed editor. Same workspaces, same pixels,
-        a fraction of the memory.
+  <main>
+    <section class="hero frame">
+      <a class="pill" href="#apps"><span class="dot"></span>notslack is out</a>
+      <h1>Your computer is fast.<br>Your apps should be too.</h1>
+      <p class="sub">
+        We rewrite the apps you work in all day as native software.
+        Pixel for pixel the same, with no browser inside.
       </p>
-      <div class="cta">
-        <a class="btn primary" href="#apps">Download the apps</a>
-        <a class="btn" href="https://github.com/nothq">Star us on GitHub</a>
+      <div class="actions">
+        <a class="btn dark" id="hero-download" href="#apps">Download notslack</a>
+        <a class="btn" href="https://github.com/nothq">View on GitHub</a>
       </div>
+      <p class="platforms-note">For macOS, Linux and Windows. Open source.</p>
 
-      <figure class="bench" aria-label="Memory footprint, same workspaces">
-        <figcaption>Memory footprint, same Slack workspaces</figcaption>
-        <div class="row">
-          <span class="label">Slack Desktop</span>
-          <span class="bar electron" style="--w:100%"></span>
-          <span class="num">1.16 GB</span>
-        </div>
-        <div class="row">
-          <span class="label"><strong>notslack</strong></span>
-          <span class="bar native" style="--w:14.2%"></span>
-          <span class="num"><strong>165 MB</strong></span>
-        </div>
-        <p class="fine">8 Electron processes vs 1 native binary. Measured with macOS <code>footprint</code> on a MacBook Pro.</p>
-      </figure>
     </section>
 
-    <section id="apps" class="wrap">
-      <h2>The apps</h2>
-      <div class="apps">
-        <article class="app">
-          <div class="app-head">
-            <span class="glyph slack" aria-hidden="true">#</span>
-            <div>
-              <h3>notslack</h3>
-              <p class="tag">Slack, without the browser.</p>
-            </div>
-          </div>
-          <p>
-            Every workspace you are signed in to, with channels, DMs, threads, reactions,
-            search, media and live updates over Slack's real-time connection.
-            Signs in with the Slack session you already have.
-          </p>
-          <p class="stat"><strong>165 MB</strong> instead of 1.16 GB</p>
-          <div class="app-links">
-            <a class="btn primary" href="https://github.com/nothq/notslack/releases/latest">Download</a>
-            <a class="btn" href="https://github.com/nothq/notslack">Source</a>
-          </div>
-        </article>
+    <section id="mission" class="grid frame">
+      <p class="label">Mission</p>
+      <div class="prose">
+        <p class="lead">
+          The laptop on your desk is faster than any computer that existed fifteen years ago.
+          The apps on it keep getting slower.
+        </p>
+        <p>
+          Chat takes seconds to open. Notes stutter while you type. Email wants a gigabyte of
+          memory to show you a list of messages. None of that is what these programs need. It
+          is what they cost when every desktop app is a website shipped inside its own copy of
+          Chrome, and we have all quietly accepted it.
+        </p>
+        <p>
+          We think the software people live in deserves better. So we are rebuilding it, one app
+          at a time, in Rust on <a href="https://www.gpui.rs">GPUI</a>, the framework behind the
+          Zed editor. Every app looks and works exactly like the one you know and signs in to the
+          account you already have. The only thing you should notice is that your computer feels
+          fast again.
+        </p>
+      </div>
+    </section>
 
-        <article class="app">
-          <div class="app-head">
-            <span class="glyph notion" aria-hidden="true">N</span>
-            <div>
-              <h3>notnotion</h3>
-              <p class="tag">Notion, without the browser.</p>
-            </div>
-          </div>
-          <p>
-            Your pages and databases, drawn by a single native Rust binary instead of a
-            web app, with the editor and the layout you already know.
-          </p>
-          <p class="stat"><span class="badge soon">Coming soon</span></p>
-          <div class="app-links">
-            <a class="btn" href="https://github.com/nothq/notnotion/releases">Releases</a>
-            <a class="btn" href="https://github.com/nothq/notnotion">Source</a>
-          </div>
+    <section id="apps" class="frame">
+      <div class="cells">
+        <article class="cell">
+          <p class="kicker">Available</p>
+          <h3>notslack</h3>
+          <p>Slack, rebuilt natively. Every workspace, channel and thread you already have, in 165&nbsp;MB of memory instead of 1.16&nbsp;GB.</p>
+          <ul class="downloads" id="notslack-downloads">
+            <li><a data-os="mac-arm" href="https://github.com/nothq/notslack/releases/latest/download/notslack-macos-arm64.dmg">macOS <span>Apple Silicon</span></a></li>
+            <li><a data-os="mac-intel" href="https://github.com/nothq/notslack/releases/latest/download/notslack-macos-x86_64.dmg">macOS <span>Intel</span></a></li>
+            <li><a data-os="linux" href="https://github.com/nothq/notslack/releases/latest/download/notslack-linux-x86_64.tar.gz">Linux <span>x86_64</span></a></li>
+            <li><a data-os="windows" href="https://github.com/nothq/notslack/releases/latest/download/notslack-windows-x86_64.zip">Windows <span>x86_64</span></a></li>
+          </ul>
         </article>
-
-        <article class="app">
-          <div class="app-head">
-            <span class="glyph superhuman" aria-hidden="true">S</span>
-            <div>
-              <h3>notsuperhuman</h3>
-              <p class="tag">Superhuman, without the browser.</p>
-            </div>
-          </div>
-          <p>
-            Keyboard-first email gets a native engine to match: triage drawn straight to
-            the GPU, with no browser between your keys and your inbox.
-          </p>
-          <p class="stat"><span class="badge soon">Coming soon</span></p>
-          <div class="app-links">
-            <a class="btn" href="https://github.com/nothq/notsuperhuman/releases">Releases</a>
-            <a class="btn" href="https://github.com/nothq/notsuperhuman">Source</a>
-          </div>
+        <article class="cell">
+          <p class="kicker muted">In progress</p>
+          <h3>notnotion</h3>
+          <p>Notion, rebuilt natively. Your pages and databases without the web app underneath.</p>
+          <p class="more"><a href="https://github.com/nothq/notnotion">Follow on GitHub</a></p>
+        </article>
+        <article class="cell">
+          <p class="kicker muted">Next</p>
+          <h3>notsuperhuman</h3>
+          <p>Superhuman, rebuilt natively. Keyboard-first email with nothing between you and your inbox.</p>
+          <p class="more"><a href="https://github.com/nothq/notsuperhuman">Follow on GitHub</a></p>
         </article>
       </div>
     </section>
 
-    <section id="why" class="wrap why">
-      <h2>Why</h2>
-      <div class="cols">
-        <div>
-          <h3>Electron is a browser per app</h3>
-          <p>
-            Each Electron app ships its own copy of Chromium and Node.js, runs a web page
-            per workspace and spreads it across a swarm of helper processes. Open three of
-            them and your laptop is running three browsers to show you text.
-          </p>
-        </div>
-        <div>
-          <h3>Native means no DOM, no GC</h3>
-          <p>
-            Our apps are single Rust binaries. No JavaScript, no garbage collector, no layout
-            engine built for documents. Every frame is drawn straight to the GPU, so they open
-            fast and scroll at your display's refresh rate.
-          </p>
-        </div>
-        <div>
-          <h3>Pixel perfect, nothing to relearn</h3>
-          <p>
-            Sidebars, message lists, composers, menus: they match the originals. You keep your
-            accounts and your muscle memory. You just get your RAM back.
-          </p>
-        </div>
+    <section class="grid frame">
+      <p class="label">Open source</p>
+      <div class="prose">
+        <p class="lead">Built in the open, and we want your help.</p>
+        <p>
+          Everything is AGPL-licensed and lives on <a href="https://github.com/nothq">GitHub</a>.
+          Read the code, fix the pixel that is off, port it to your platform, or tell us which app
+          should be next.
+        </p>
+        <pre><code>git clone https://github.com/nothq/notslack
+cd notslack && cargo run --release</code></pre>
       </div>
-    </section>
-
-    <section id="build" class="wrap build">
-      <h2>Come build it</h2>
-      <p class="lede">
-        This is early, and that is the fun part. If you have ever watched an Electron app eat
-        your laptop, or you want to ship real code on GPUI, there is a lot to do: platform
-        builds, notifications, and every place we are a pixel off from the original.
-      </p>
-      <ul class="repos">
-        <li><a href="https://github.com/nothq/notslack"><code>nothq/notslack</code></a></li>
-        <li><a href="https://github.com/nothq/notnotion"><code>nothq/notnotion</code></a></li>
-        <li><a href="https://github.com/nothq/notsuperhuman"><code>nothq/notsuperhuman</code></a></li>
-      </ul>
-      <pre><code>git clone https://github.com/nothq/notslack
-cd notslack
-cargo run --release</code></pre>
-      <p>Pick an issue, open a PR. Everything is <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL-3.0</a>.</p>
     </section>
   </main>
 
-  <footer class="wrap">
-    <p>
-      <span class="logo small"><span class="strike">not</span>hq</span>
-      · <a href="https://github.com/nothq">github.com/nothq</a>
-      · <a href="mailto:notheadquarters@protonmail.com">notheadquarters@protonmail.com</a>
-    </p>
-    <p class="fine">
-      nothq is an independent project, not affiliated with or endorsed by Slack Technologies,
-      Salesforce, Notion Labs or Superhuman. All trademarks belong to their owners.
-    </p>
+  <footer class="frame">
+    <span>nothq</span>
+    <span><a href="https://github.com/nothq">GitHub</a> · <a href="mailto:notheadquarters@protonmail.com">notheadquarters@protonmail.com</a></span>
+    <p class="legal">Independent, and not affiliated with Slack, Salesforce, Notion or Superhuman. Their names belong to their owners.</p>
   </footer>
+
+  <script>
+    // Point the hero button at the visitor's build.
+    (function () {
+      var ua = navigator.userAgent, os = null;
+      if (/Windows/.test(ua)) os = "windows";
+      else if (/Mac/.test(ua) && !/iPhone|iPad/.test(ua)) os = "mac-arm";
+      else if (/Linux/.test(ua) && !/Android/.test(ua)) os = "linux";
+      var link = os && document.querySelector('#notslack-downloads a[data-os="' + os + '"]');
+      if (!link) return;
+      link.classList.add("current");
+      var hero = document.getElementById("hero-download");
+      hero.href = link.href;
+      hero.textContent = "Download for " + link.firstChild.textContent.trim();
+    })();
+  </script>
 </body>
 </html>
