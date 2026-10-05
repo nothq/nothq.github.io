@@ -1,14 +1,29 @@
 #!/bin/sh
-# Installs notslack from its latest GitHub release:
+# Installs a nothq app from its latest GitHub release. notslack by default:
 #
 #   curl -fsSL https://nothq.github.io/install.sh | sh
+#   curl -fsSL https://nothq.github.io/install.sh | sh -s notnotion
 #
-# macOS: copies notslack.app into /Applications (or ~/Applications) and opens it.
-# Linux: unpacks into ~/.local/share/nothq/notslack, links ~/.local/bin/notslack
+# macOS: copies <app>.app into /Applications (or ~/Applications) and opens it.
+# Linux: unpacks into ~/.local/share/nothq/<app>, links ~/.local/bin/<app>
 # and adds a launcher to your applications menu.
 set -eu
 
-app=notslack
+app=${1:-notslack}
+case "$app" in
+    notslack)
+        summary="Slack, without the browser"
+        categories="Network;InstantMessaging;Chat;"
+        ;;
+    notnotion)
+        summary="Notion, without the browser"
+        categories="Office;"
+        ;;
+    *)
+        printf 'install.sh: unknown app %s; choose notslack or notnotion\n' "$app" >&2
+        exit 1
+        ;;
+esac
 releases=https://github.com/nothq/$app/releases/latest/download
 
 main() {
@@ -68,7 +83,7 @@ install_macos() {
 install_linux() {
     case "$(uname -m)" in
         x86_64 | amd64) platform=linux-x86_64 ;;
-        *) fail "unsupported Linux architecture $(uname -m); notslack builds for x86_64" ;;
+        *) fail "unsupported Linux architecture $(uname -m); $app builds for x86_64" ;;
     esac
 
     data=${XDG_DATA_HOME:-$HOME/.local/share}
@@ -87,10 +102,10 @@ install_linux() {
 [Desktop Entry]
 Type=Application
 Name=$app
-Comment=Slack, without the browser
+Comment=$summary
 Exec=$dest/$app
 Terminal=false
-Categories=Network;InstantMessaging;Chat;
+Categories=$categories
 StartupWMClass=$app
 DESKTOP
 

@@ -95,10 +95,16 @@
           <p class="terminal">Or on macOS and Linux: <code>curl -fsSL https://nothq.github.io/install.sh | sh</code></p>
         </article>
         <article class="cell">
-          <p class="kicker muted">In progress</p>
+          <p class="kicker">Available</p>
           <h3>notnotion</h3>
           <p>Notion, rebuilt natively. Your pages and databases without the web app underneath.</p>
-          <p class="more"><a href="https://github.com/nothq/notnotion">Follow on GitHub</a></p>
+          <ul class="downloads" id="notnotion-downloads">
+            <li><a data-os="mac-arm" href="https://github.com/nothq/notnotion/releases/latest/download/notnotion-macos-arm64.dmg">macOS <span>Apple Silicon</span></a></li>
+            <li><a data-os="mac-intel" href="https://github.com/nothq/notnotion/releases/latest/download/notnotion-macos-x86_64.dmg">macOS <span>Intel</span></a></li>
+            <li><a data-os="linux" href="https://github.com/nothq/notnotion/releases/latest/download/notnotion-linux-x86_64.tar.gz">Linux <span>x86_64</span></a></li>
+            <li><a data-os="windows" href="https://github.com/nothq/notnotion/releases/latest/download/notnotion-windows-x86_64.zip">Windows <span>x86_64</span></a></li>
+          </ul>
+          <p class="terminal">Or on macOS and Linux: <code>curl -fsSL https://nothq.github.io/install.sh | sh -s notnotion</code></p>
         </article>
         <article class="cell">
           <p class="kicker muted">Next</p>
@@ -137,9 +143,11 @@ cd notslack && cargo run --release</code></pre>
       if (/Windows/.test(ua)) os = "windows";
       else if (/Mac/.test(ua) && !/iPhone|iPad/.test(ua)) os = "mac-arm";
       else if (/Linux/.test(ua) && !/Android/.test(ua)) os = "linux";
-      var link = os && document.querySelector('#notslack-downloads a[data-os="' + os + '"]');
-      if (!link) return;
-      link.classList.add("current");
+      if (!os) return;
+      document.querySelectorAll('.downloads a[data-os="' + os + '"]').forEach(function (a) {
+        a.classList.add("current");
+      });
+      var link = document.querySelector('#notslack-downloads a[data-os="' + os + '"]');
       var hero = document.getElementById("hero-download");
       hero.href = link.href;
       hero.textContent = "Download for " + link.firstChild.textContent.trim();
