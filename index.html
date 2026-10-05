@@ -83,7 +83,6 @@
     <section id="apps" class="frame">
       <div class="cells">
         <article class="cell">
-          <p class="kicker">Available</p>
           <h3>notslack</h3>
           <p>Slack, rebuilt natively. Every workspace, channel and thread you already have, in 165&nbsp;MB of memory instead of 1.16&nbsp;GB.</p>
           <ul class="downloads" id="notslack-downloads">
@@ -92,10 +91,10 @@
             <li><a data-os="linux" href="https://github.com/nothq/notslack/releases/latest/download/notslack-linux-x86_64.tar.gz">Linux <span>x86_64</span></a></li>
             <li><a data-os="windows" href="https://github.com/nothq/notslack/releases/latest/download/notslack-windows-x86_64.zip">Windows <span>x86_64</span></a></li>
           </ul>
-          <p class="terminal">Or on macOS and Linux: <code>curl -fsSL https://nothq.github.io/install.sh | sh</code></p>
+          <p class="terminal">Or on macOS and Linux:</p>
+          <button type="button" class="command" data-copy="curl -fsSL https://nothq.github.io/install.sh | sh"><code>curl -fsSL https://nothq.github.io/install.sh | sh</code><span class="hint">Copy</span></button>
         </article>
         <article class="cell">
-          <p class="kicker">Available</p>
           <h3>notnotion</h3>
           <p>Notion, rebuilt natively. Your pages and databases without the web app underneath.</p>
           <ul class="downloads" id="notnotion-downloads">
@@ -104,10 +103,10 @@
             <li><a data-os="linux" href="https://github.com/nothq/notnotion/releases/latest/download/notnotion-linux-x86_64.tar.gz">Linux <span>x86_64</span></a></li>
             <li><a data-os="windows" href="https://github.com/nothq/notnotion/releases/latest/download/notnotion-windows-x86_64.zip">Windows <span>x86_64</span></a></li>
           </ul>
-          <p class="terminal">Or on macOS and Linux: <code>curl -fsSL https://nothq.github.io/install.sh | sh -s notnotion</code></p>
+          <p class="terminal">Or on macOS and Linux:</p>
+          <button type="button" class="command" data-copy="curl -fsSL https://nothq.github.io/install.sh | sh -s notnotion"><code>curl -fsSL https://nothq.github.io/install.sh | sh -s notnotion</code><span class="hint">Copy</span></button>
         </article>
         <article class="cell">
-          <p class="kicker">Available</p>
           <h3>notsuperhuman</h3>
           <p>Superhuman, rebuilt natively. Keyboard-first email for your Gmail and JMAP inboxes, in 71&nbsp;MB of memory instead of 1.05&nbsp;GB.</p>
           <ul class="downloads" id="notsuperhuman-downloads">
@@ -116,7 +115,8 @@
             <li><a data-os="linux" href="https://github.com/nothq/notsuperhuman/releases/latest/download/notsuperhuman-linux-x86_64.tar.gz">Linux <span>x86_64</span></a></li>
             <li><a data-os="windows" href="https://github.com/nothq/notsuperhuman/releases/latest/download/notsuperhuman-windows-x86_64.zip">Windows <span>x86_64</span></a></li>
           </ul>
-          <p class="terminal">Or on macOS and Linux: <code>curl -fsSL https://nothq.github.io/install.sh | sh -s notsuperhuman</code></p>
+          <p class="terminal">Or on macOS and Linux:</p>
+          <button type="button" class="command" data-copy="curl -fsSL https://nothq.github.io/install.sh | sh -s notsuperhuman"><code>curl -fsSL https://nothq.github.io/install.sh | sh -s notsuperhuman</code><span class="hint">Copy</span></button>
         </article>
       </div>
     </section>
@@ -160,11 +160,36 @@ cd notslack && cargo run --release</code></pre>
       if (os === "windows") document.getElementById("install").hidden = true;
     })();
 
+    // Copies while the click is still being handled, which every browser
+    // allows; the async clipboard API is the fallback.
+    function copyText(text) {
+      if (selectAndCopy(text)) return Promise.resolve();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+      }
+      return Promise.reject(new Error("copy refused"));
+    }
+
+    function selectAndCopy(text) {
+      var area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.select();
+      var copied = false;
+      try { copied = document.execCommand("copy"); } catch (error) {}
+      document.body.removeChild(area);
+      return copied;
+    }
+
     document.querySelectorAll("[data-copy]").forEach(function (button) {
       button.addEventListener("click", function () {
-        navigator.clipboard.writeText(button.dataset.copy).then(function () {
-          button.textContent = "Copied";
-          setTimeout(function () { button.textContent = "Copy"; }, 1600);
+        copyText(button.dataset.copy).then(function () {
+          var label = button.querySelector(".hint") || button;
+          label.textContent = "Copied";
+          setTimeout(function () { label.textContent = "Copy"; }, 1600);
         });
       });
     });
