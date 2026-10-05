@@ -75,29 +75,41 @@ h1 {
 }
 .sub { font-size: 20px; line-height: 1.5; color: var(--muted); max-width: 560px; margin: 0 auto 36px; letter-spacing: -0.01em; }
 .actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-.install {
-  display: inline-flex; align-items: center; gap: 4px; margin-top: 28px; max-width: 100%;
-  padding: 4px 4px 4px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel);
-}
-.install[hidden] { display: none; }
-.install code { font: 13px var(--mono); white-space: nowrap; overflow-x: auto; }
-.install code::before { content: "$ "; color: var(--muted); }
-.copy {
-  flex: none; padding: 6px 10px; border: none; border-radius: 6px; background: transparent;
-  font: 500 12px var(--sans); color: var(--muted); cursor: pointer;
-}
-.copy:hover { color: var(--text); background: var(--bg); }
-.terminal { margin: 16px 0 8px !important; font-size: 13px !important; }
+/* Copyable command: one line, with a copy icon that appears on hover. */
 .command {
-  display: flex; align-items: center; gap: 8px; width: 100%; padding: 8px 10px 8px 12px;
-  border: 1px solid var(--line); border-radius: 8px; background: var(--panel);
-  color: var(--text); text-align: left; cursor: pointer;
+  position: relative; display: flex; align-items: center; width: 100%; min-width: 0;
+  padding: 11px 48px 11px 16px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--panel); color: var(--text); font: inherit; text-align: left; cursor: pointer;
+  transition: border-color 0.15s ease;
 }
-.command:hover { border-color: var(--muted); }
-.command code { flex: 1; min-width: 0; font: 12px/1.5 var(--mono); overflow-wrap: anywhere; }
-.command code::before { content: "$ "; color: var(--muted); }
-.command .hint { flex: none; font: 500 12px var(--sans); color: var(--muted); }
-.command:hover .hint { color: var(--text); }
+.command[hidden] { display: none; }
+.command:hover { border-color: color-mix(in srgb, var(--muted) 45%, var(--line)); }
+.command:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.command code {
+  flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  font: 13px/1.5 var(--mono);
+}
+.command code::before { content: "$ "; color: var(--muted); user-select: none; }
+.copy-icon {
+  position: absolute; top: 50%; right: 8px; display: grid; place-items: center;
+  width: 30px; height: 30px; margin-top: -15px; border-radius: 6px;
+  color: var(--muted); opacity: 0; transform: scale(0.92);
+  transition: opacity 0.15s ease, transform 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+.copy-icon svg { width: 16px; height: 16px; grid-area: 1 / 1; transition: opacity 0.15s ease, transform 0.2s ease; }
+.copy-icon .check { opacity: 0; transform: scale(0.6); }
+.command:hover .copy-icon, .command:focus-visible .copy-icon, .command.copied .copy-icon { opacity: 1; transform: none; }
+.command:hover .copy-icon { color: var(--text); background: var(--bg); }
+.command.copied .copy-icon { color: var(--blue); }
+.command.copied .copy-icon .clip { opacity: 0; transform: scale(0.6); }
+.command.copied .copy-icon .check { opacity: 1; transform: none; }
+@media (hover: none) { .copy-icon { opacity: 1; transform: none; } }
+.hero-command { display: inline-flex; width: auto; max-width: 100%; margin-top: 28px; }
+.commands { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 640px; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 .platforms-note { font-size: 13px; color: var(--muted); margin: 16px 0 0; }
 
 /* label + content rows */
@@ -112,11 +124,16 @@ pre { margin: 28px 0 0; padding: 18px 20px; background: var(--panel); border: 1p
 
 /* apps */
 #apps { border-bottom: 1px solid var(--line); }
-.cells { display: grid; grid-template-columns: repeat(3, 1fr); }
-.cell { padding: 32px; border-right: 1px solid var(--line); display: flex; flex-direction: column; }
+/* Each card spans three shared rows (name, description, downloads), so the
+   download lists line up whatever the descriptions say. */
+.cells { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, auto); }
+.cell {
+  display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0;
+  padding: 32px; border-right: 1px solid var(--line);
+}
 .cell:last-child { border-right: none; }
 .cell h3 { margin: 0 0 10px; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
-.cell > p { margin: 0; color: var(--muted); font-size: 15px; }
+.cell .desc { margin: 0; color: var(--muted); font-size: 15px; }
 .downloads { list-style: none; margin: 24px 0 0; padding: 0; border-top: 1px solid var(--line); }
 .downloads a {
   display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line);
@@ -126,8 +143,6 @@ pre { margin: 28px 0 0; padding: 18px 20px; background: var(--panel); border: 1p
 .downloads a span { color: var(--muted); font-weight: 400; margin-left: auto; margin-right: 12px; font-size: 13px; align-self: center; }
 .downloads a:hover::after, .downloads a.current::after { color: var(--blue); }
 .downloads a.current { color: var(--blue); }
-.more { margin-top: auto !important; padding-top: 24px; font-size: 14px !important; }
-.more a { color: var(--text); text-underline-offset: 3px; }
 
 /* footer */
 footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 32px; font-size: 13px; color: var(--muted); }
@@ -142,6 +157,7 @@ footer span:first-child { color: var(--text); font-weight: 600; }
   .cells { grid-template-columns: 1fr; }
   .cell { border-right: none; border-bottom: 1px solid var(--line); padding: 28px 20px; }
   .cell:last-child { border-bottom: none; }
+  .command code { white-space: normal; overflow-wrap: anywhere; }
   .hero { padding: 72px 20px 72px; }
   .nav nav a:not(.btn) { display: none; }
   .nav nav a[href^="https://github.com"] { display: inline; }

@@ -49,10 +49,7 @@
         <a class="btn dark" id="hero-download" href="#apps">Download notslack</a>
         <a class="btn" href="https://github.com/nothq">View on GitHub</a>
       </div>
-      <div class="install" id="install">
-        <code>curl -fsSL https://nothq.github.io/install.sh | sh</code>
-        <button type="button" class="copy" data-copy="curl -fsSL https://nothq.github.io/install.sh | sh">Copy</button>
-      </div>
+      <button type="button" class="command hero-command" id="install" data-copy="curl -fsSL https://nothq.github.io/install.sh | sh"><code>curl -fsSL https://nothq.github.io/install.sh | sh</code><span class="copy-icon" aria-hidden="true"><svg class="clip" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="5.5" y="5.5" width="8" height="8" rx="1.75"/><path d="M10.5 5.5V4.25A1.75 1.75 0 0 0 8.75 2.5h-4.5A1.75 1.75 0 0 0 2.5 4.25v4.5c0 .97.78 1.75 1.75 1.75H5.5"/></svg><svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></span></button>
       <p class="platforms-note">For macOS, Linux and Windows. Open source.</p>
 
     </section>
@@ -84,40 +81,46 @@
       <div class="cells">
         <article class="cell">
           <h3>notslack</h3>
-          <p>Slack, rebuilt natively. Every workspace, channel and thread you already have, in 165&nbsp;MB of memory instead of 1.16&nbsp;GB.</p>
+          <p class="desc">Slack, rebuilt natively. Every workspace, channel and thread, in 165&nbsp;MB of memory instead of 1.16&nbsp;GB.</p>
           <ul class="downloads" id="notslack-downloads">
             <li><a data-os="mac-arm" href="https://github.com/nothq/notslack/releases/latest/download/notslack-macos-arm64.dmg">macOS <span>Apple Silicon</span></a></li>
             <li><a data-os="mac-intel" href="https://github.com/nothq/notslack/releases/latest/download/notslack-macos-x86_64.dmg">macOS <span>Intel</span></a></li>
             <li><a data-os="linux" href="https://github.com/nothq/notslack/releases/latest/download/notslack-linux-x86_64.tar.gz">Linux <span>x86_64</span></a></li>
             <li><a data-os="windows" href="https://github.com/nothq/notslack/releases/latest/download/notslack-windows-x86_64.zip">Windows <span>x86_64</span></a></li>
           </ul>
-          <p class="terminal">Or on macOS and Linux:</p>
-          <button type="button" class="command" data-copy="curl -fsSL https://nothq.github.io/install.sh | sh"><code>curl -fsSL https://nothq.github.io/install.sh | sh</code><span class="hint">Copy</span></button>
         </article>
         <article class="cell">
           <h3>notnotion</h3>
-          <p>Notion, rebuilt natively. Your pages and databases without the web app underneath.</p>
+          <p class="desc">Notion, rebuilt natively. Every page and database, in 258&nbsp;MB of memory instead of 1.36&nbsp;GB.</p>
           <ul class="downloads" id="notnotion-downloads">
             <li><a data-os="mac-arm" href="https://github.com/nothq/notnotion/releases/latest/download/notnotion-macos-arm64.dmg">macOS <span>Apple Silicon</span></a></li>
             <li><a data-os="mac-intel" href="https://github.com/nothq/notnotion/releases/latest/download/notnotion-macos-x86_64.dmg">macOS <span>Intel</span></a></li>
             <li><a data-os="linux" href="https://github.com/nothq/notnotion/releases/latest/download/notnotion-linux-x86_64.tar.gz">Linux <span>x86_64</span></a></li>
             <li><a data-os="windows" href="https://github.com/nothq/notnotion/releases/latest/download/notnotion-windows-x86_64.zip">Windows <span>x86_64</span></a></li>
           </ul>
-          <p class="terminal">Or on macOS and Linux:</p>
-          <button type="button" class="command" data-copy="curl -fsSL https://nothq.github.io/install.sh | sh -s notnotion"><code>curl -fsSL https://nothq.github.io/install.sh | sh -s notnotion</code><span class="hint">Copy</span></button>
         </article>
         <article class="cell">
           <h3>notsuperhuman</h3>
-          <p>Superhuman, rebuilt natively. Keyboard-first email for your Gmail and JMAP inboxes, in 71&nbsp;MB of memory instead of 1.05&nbsp;GB.</p>
+          <p class="desc">Superhuman, rebuilt natively. Every Gmail and JMAP inbox, in 71&nbsp;MB of memory instead of 1.05&nbsp;GB.</p>
           <ul class="downloads" id="notsuperhuman-downloads">
             <li><a data-os="mac-arm" href="https://github.com/nothq/notsuperhuman/releases/latest/download/notsuperhuman-macos-arm64.dmg">macOS <span>Apple Silicon</span></a></li>
             <li><a data-os="mac-intel" href="https://github.com/nothq/notsuperhuman/releases/latest/download/notsuperhuman-macos-x86_64.dmg">macOS <span>Intel</span></a></li>
             <li><a data-os="linux" href="https://github.com/nothq/notsuperhuman/releases/latest/download/notsuperhuman-linux-x86_64.tar.gz">Linux <span>x86_64</span></a></li>
             <li><a data-os="windows" href="https://github.com/nothq/notsuperhuman/releases/latest/download/notsuperhuman-windows-x86_64.zip">Windows <span>x86_64</span></a></li>
           </ul>
-          <p class="terminal">Or on macOS and Linux:</p>
-          <button type="button" class="command" data-copy="curl -fsSL https://nothq.github.io/install.sh | sh -s notsuperhuman"><code>curl -fsSL https://nothq.github.io/install.sh | sh -s notsuperhuman</code><span class="hint">Copy</span></button>
         </article>
+      </div>
+    </section>
+
+    <section id="terminal" class="grid frame">
+      <p class="label">Terminal</p>
+      <div class="prose">
+        <p>On macOS and Linux, one command installs any app. Run it again to update.</p>
+        <ul class="commands">
+          <li><button type="button" class="command" data-copy="curl -fsSL https://nothq.github.io/install.sh | sh -s notslack"><code>curl -fsSL https://nothq.github.io/install.sh | sh -s notslack</code><span class="copy-icon" aria-hidden="true"><svg class="clip" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="5.5" y="5.5" width="8" height="8" rx="1.75"/><path d="M10.5 5.5V4.25A1.75 1.75 0 0 0 8.75 2.5h-4.5A1.75 1.75 0 0 0 2.5 4.25v4.5c0 .97.78 1.75 1.75 1.75H5.5"/></svg><svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></span></button></li>
+          <li><button type="button" class="command" data-copy="curl -fsSL https://nothq.github.io/install.sh | sh -s notnotion"><code>curl -fsSL https://nothq.github.io/install.sh | sh -s notnotion</code><span class="copy-icon" aria-hidden="true"><svg class="clip" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="5.5" y="5.5" width="8" height="8" rx="1.75"/><path d="M10.5 5.5V4.25A1.75 1.75 0 0 0 8.75 2.5h-4.5A1.75 1.75 0 0 0 2.5 4.25v4.5c0 .97.78 1.75 1.75 1.75H5.5"/></svg><svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></span></button></li>
+          <li><button type="button" class="command" data-copy="curl -fsSL https://nothq.github.io/install.sh | sh -s notsuperhuman"><code>curl -fsSL https://nothq.github.io/install.sh | sh -s notsuperhuman</code><span class="copy-icon" aria-hidden="true"><svg class="clip" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="5.5" y="5.5" width="8" height="8" rx="1.75"/><path d="M10.5 5.5V4.25A1.75 1.75 0 0 0 8.75 2.5h-4.5A1.75 1.75 0 0 0 2.5 4.25v4.5c0 .97.78 1.75 1.75 1.75H5.5"/></svg><svg class="check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></span></button></li>
+        </ul>
       </div>
     </section>
 
@@ -134,6 +137,7 @@
 cd notslack && cargo run --release</code></pre>
       </div>
     </section>
+    <p id="copy-status" class="visually-hidden" aria-live="polite"></p>
   </main>
 
   <footer class="frame">
@@ -157,7 +161,10 @@ cd notslack && cargo run --release</code></pre>
       var hero = document.getElementById("hero-download");
       hero.href = link.href;
       hero.textContent = "Download for " + link.firstChild.textContent.trim();
-      if (os === "windows") document.getElementById("install").hidden = true;
+      if (os === "windows") {
+        document.getElementById("install").hidden = true;
+        document.getElementById("terminal").hidden = true;
+      }
     })();
 
     // Copies while the click is still being handled, which every browser
@@ -184,12 +191,18 @@ cd notslack && cargo run --release</code></pre>
       return copied;
     }
 
+    var copyStatus = document.getElementById("copy-status");
     document.querySelectorAll("[data-copy]").forEach(function (button) {
+      var timer;
       button.addEventListener("click", function () {
         copyText(button.dataset.copy).then(function () {
-          var label = button.querySelector(".hint") || button;
-          label.textContent = "Copied";
-          setTimeout(function () { label.textContent = "Copy"; }, 1600);
+          button.classList.add("copied");
+          copyStatus.textContent = "Copied to clipboard";
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            button.classList.remove("copied");
+            copyStatus.textContent = "";
+          }, 1600);
         });
       });
     });
