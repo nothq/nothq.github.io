@@ -7,7 +7,7 @@ on:
     paths: [install.sh, .github/workflows/install.yml]
   push:
     branches: [main]
-    paths: [install.sh]
+    paths: [install.sh, .github/workflows/install.yml]
   workflow_dispatch:
 
 permissions:
