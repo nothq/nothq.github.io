@@ -85,10 +85,8 @@ h1 {
 .command[hidden] { display: none; }
 .command:hover { border-color: color-mix(in srgb, var(--muted) 45%, var(--line)); }
 .command:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-.command code {
-  flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
-  font: 13px/1.5 var(--mono);
-}
+/* One line when it fits; otherwise it wraps at spaces rather than overflow. */
+.command code { flex: 1; min-width: 0; font: 13px/1.6 var(--mono); overflow-wrap: anywhere; }
 .command code::before { content: "$ "; color: var(--muted); user-select: none; }
 .copy-icon {
   position: absolute; top: 50%; right: 8px; display: grid; place-items: center;
@@ -105,7 +103,8 @@ h1 {
 .command.copied .copy-icon .check { opacity: 1; transform: none; }
 @media (hover: none) { .copy-icon { opacity: 1; transform: none; } }
 .hero-command { display: inline-flex; width: auto; max-width: 100%; margin-top: 28px; }
-.commands { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 640px; }
+.commands { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; max-width: 640px; }
+.commands li { min-width: 0; }
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
@@ -161,7 +160,6 @@ footer span:first-child { color: var(--text); font-weight: 600; }
   .cells { grid-template-columns: 1fr; }
   .cell { border-right: none; border-bottom: 1px solid var(--line); padding: 28px 20px; }
   .cell:last-child { border-bottom: none; }
-  .command code { white-space: normal; overflow-wrap: anywhere; }
   .hero { padding: 72px 20px 72px; }
   .nav nav a:not(.btn) { display: none; }
   .nav nav a[href^="https://github.com"] { display: inline; }

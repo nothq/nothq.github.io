@@ -1,13 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="notslack">
-  
-  <rect width="128" height="128" rx="28" fill="#ffffff"/>
-  <rect x=".5" y=".5" width="127" height="127" rx="27.5" fill="none" stroke="#000" stroke-opacity=".1"/>
-  <g stroke-linecap="round" stroke-width="14">
-    <path d="M52 32v64" stroke="#36c5f0"/>
-    <path d="M32 52h64" stroke="#ecb22e"/>
-    <path d="M76 32v64" stroke="#2eb67d"/>
-    <path d="M32 76h64" stroke="#e01e5a"/>
+  <rect width="128" height="128" rx="28" fill="#0b0b0f"/>
+  <rect x=".5" y=".5" width="127" height="127" rx="27.5" fill="none" stroke="#ffffff" stroke-opacity=".14"/>
+  <g fill="#ffffff" transform="translate(25.66 25.66) scale(1.42)">
+    <g><rect x="0" y="14.4" width="25.2" height="10.8" rx="5.4"/><path d="M25.2 10.8H19.8A5.4 5.4 0 0 1 14.4 5.4 5.4 5.4 0 0 1 19.8 0 5.4 5.4 0 0 1 25.2 5.4Z"/></g>
+    <g transform="rotate(90 27 27)"><rect x="0" y="14.4" width="25.2" height="10.8" rx="5.4"/><path d="M25.2 10.8H19.8A5.4 5.4 0 0 1 14.4 5.4 5.4 5.4 0 0 1 19.8 0 5.4 5.4 0 0 1 25.2 5.4Z"/></g>
+    <g transform="rotate(180 27 27)"><rect x="0" y="14.4" width="25.2" height="10.8" rx="5.4"/><path d="M25.2 10.8H19.8A5.4 5.4 0 0 1 14.4 5.4 5.4 5.4 0 0 1 19.8 0 5.4 5.4 0 0 1 25.2 5.4Z"/></g>
+    <g transform="rotate(270 27 27)"><rect x="0" y="14.4" width="25.2" height="10.8" rx="5.4"/><path d="M25.2 10.8H19.8A5.4 5.4 0 0 1 14.4 5.4 5.4 5.4 0 0 1 19.8 0 5.4 5.4 0 0 1 25.2 5.4Z"/></g>
   </g>
-  <path d="M36 92 92 36" stroke="#ffffff" stroke-width="20" stroke-linecap="round"/>
-  <path d="M36 92 92 36" stroke="#0b0b0f" stroke-width="9" stroke-linecap="round"/>
+  <path d="M32 96 96 32" stroke="#0b0b0f" stroke-width="19" stroke-linecap="round" fill="none"/>
+  <path d="M32 96 96 32" stroke="#ffffff" stroke-width="8" stroke-linecap="round" fill="none"/>
 </svg>
