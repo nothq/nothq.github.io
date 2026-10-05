@@ -132,8 +132,8 @@ pre { margin: 28px 0 0; padding: 18px 20px; background: var(--panel); border: 1p
 }
 .cell:last-child { border-right: none; }
 .app-icon {
-  display: block; width: 48px; height: 48px; margin: 0 0 18px;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.06)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
+  display: block; width: 64px; height: 64px; margin: 0 0 20px; border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 8px 20px -6px rgba(0, 0, 0, 0.28);
 }
 .cell h3 { margin: 0 0 10px; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
 .cell .desc { margin: 0; color: var(--muted); font-size: 15px; }
