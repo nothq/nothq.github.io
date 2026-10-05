@@ -124,14 +124,18 @@ pre { margin: 28px 0 0; padding: 18px 20px; background: var(--panel); border: 1p
 
 /* apps */
 #apps { border-bottom: 1px solid var(--line); }
-/* Each card spans three shared rows (name, description, downloads), so the
-   download lists line up whatever the descriptions say. */
-.cells { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, auto); }
+/* Each card spans four shared rows (icon, name, description, downloads), so
+   everything lines up across cards whatever the descriptions say. */
+.cells { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, auto); }
 .cell {
-  display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0;
+  display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0;
   padding: 32px; border-right: 1px solid var(--line);
 }
 .cell:last-child { border-right: none; }
+.app-icon {
+  display: block; width: 48px; height: 48px; margin: 0 0 18px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.06)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
+}
 .cell h3 { margin: 0 0 10px; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
 .cell .desc { margin: 0; color: var(--muted); font-size: 15px; }
 .downloads { list-style: none; margin: 24px 0 0; padding: 0; border-top: 1px solid var(--line); }
