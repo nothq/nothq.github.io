@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [notslack, notnotion]
+        app: [notslack, notnotion, notsuperhuman]
         os: [macos-15, macos-15-intel, ubuntu-22.04]
     env:
       APP: ${{ matrix.app }}

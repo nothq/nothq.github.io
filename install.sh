@@ -3,6 +3,7 @@
 #
 #   curl -fsSL https://nothq.github.io/install.sh | sh
 #   curl -fsSL https://nothq.github.io/install.sh | sh -s notnotion
+#   curl -fsSL https://nothq.github.io/install.sh | sh -s notsuperhuman
 #
 # macOS: copies <app>.app into /Applications (or ~/Applications) and opens it.
 # Linux: unpacks into ~/.local/share/nothq/<app>, links ~/.local/bin/<app>
@@ -19,8 +20,12 @@ case "$app" in
         summary="Notion, without the browser"
         categories="Office;"
         ;;
+    notsuperhuman)
+        summary="Superhuman, without the browser"
+        categories="Network;Email;"
+        ;;
     *)
-        printf 'install.sh: unknown app %s; choose notslack or notnotion\n' "$app" >&2
+        printf 'install.sh: unknown app %s; choose notslack, notnotion or notsuperhuman\n' "$app" >&2
         exit 1
         ;;
 esac
